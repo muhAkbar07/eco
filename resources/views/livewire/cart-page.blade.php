@@ -52,6 +52,8 @@
               </tbody>
             </table>
           </div>
+          
+          <small class="text-red-500">Perhatikan Quantity terlebih dahulu sebelum Checkout</small>
         </div>
         <div class="md:w-1/4">
           <div class="bg-white rounded-lg shadow-md p-6">
@@ -74,7 +76,7 @@
               <span class="font-semibold">{{ Number::currency($grand_total, 'IDR') }}</span></span>
             </div>
             @if ($cart_items)
-            <button class="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 w-full">Checkout</button>
+            <a href="/checkout" class="bg-blue-500 block text-center text-white py-2 px-4 rounded-lg mt-4 w-full">Checkout</a>
                 
             @endif
           </div>

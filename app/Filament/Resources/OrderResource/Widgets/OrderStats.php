@@ -3,22 +3,25 @@
 namespace App\Filament\Resources\OrderResource\Widgets;
 
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
-use Filament\Widgets\StatsOverviewWidget\Stat;
-use App\Models\Order;
-use Filament\Widgets\Widget;
-use Illuminate\Support\Number;
 use Filament\Widgets\StatsOverviewWidget\Card;
+use App\Models\Order;
 
 class OrderStats extends BaseWidget
 {
-    protected function getStats(): array
+    protected function getCards(): array
     {
         return [
-            Stat::make('New Orders', Order::query()->where('status', 'new')->count()),
-            Stat::make('Orders Processing', Order::query()->where('status', 'processing')->count()),
-            Stat::make('Orders Shipped', Order::query()->where('status', 'shipped')->count()),
-            Stat::make('Average Price', Number::currency(Order::query()->avg('grand_total'))),
+            Card::make('New Orders', Order::query()->where('status', 'new')->count()),
+            Card::make('Orders Processing', Order::query()->where('status', 'processing')->count()),
+            Card::make('Orders Shipped', Order::query()->where('status', 'shipped')->count()),
+            Card::make('Average Price', $this->formatRupiah($this->getAverageOrderPrice())),
         ];
+    }
+
+    private function getAverageOrderPrice(): float
+    {
+        $averagePrice = Order::query()->avg('grand_total');
+        return $averagePrice !== null ? $averagePrice : 0.0;
     }
 
     private function formatRupiah($number)

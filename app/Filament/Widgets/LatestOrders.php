@@ -40,14 +40,14 @@ class LatestOrders extends BaseWidget
                         'processing' => 'warning',
                         'shipped' => 'success',
                         'delivered' => 'success',
-                        'cancelled' => 'danger',
+                        'canceled' => 'danger',
                     })
                     ->icon(fn (string $state): string => match ($state) {
                         'new' => 'heroicon-o-shopping-cart',
                         'processing' => 'heroicon-m-arrow-path',
                         'shipped' => 'heroicon-o-truck',
                         'delivered' => 'heroicon-o-truck',
-                        'cancelled' => 'heroicon-o-x-circle',
+                        'canceled' => 'heroicon-o-x-circle',
                     })
                     ->sortable(),
 

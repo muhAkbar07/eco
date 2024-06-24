@@ -2,8 +2,11 @@
 
 namespace App\Helpers;
 
+use App\Models\Order;
+use App\Helpers\Queue;
 use App\Models\Product;
 use Illuminate\Support\Facades\Cookie;
+
 
 
 class CartManagement {
@@ -96,7 +99,7 @@ class CartManagement {
 
     // clear cart items from cookie
     static public function clearCartItems() {
-        Cookie:queue(Cookie::forget('cart_items'));
+        Cookie::queue(Cookie::forget('cart_items'));
     }
 
     // get all cart items from cookie
